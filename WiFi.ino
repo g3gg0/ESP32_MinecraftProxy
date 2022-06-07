@@ -91,7 +91,7 @@ bool wifi_loop(void)
                     float maxRssi = -40;
                     float minRssi = -90;
                     float strRatio = (rssi - minRssi) / (maxRssi - minRssi);
-                    float strength = min(1, max(0, strRatio));
+                    float strength = MIN(1, MAX(0, strRatio));
                     float brightness = 0.08f;
                     int r = brightness * 255.0f * (1.0f - strength);
                     int g = brightness * 255.0f * strength;

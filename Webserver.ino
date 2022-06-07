@@ -9,8 +9,6 @@ extern bool wifi_captive;
 
 int www_wifi_scanned = -1;
 
-#define min(a, b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a < _b ? _a : _b; })
-#define max(a, b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 
 void www_setup()
 {
@@ -84,8 +82,8 @@ void handle_test()
 
 void handle_set_parm()
 {
-    current_config.mqtt_publish = max(0, min(65535, webserver.arg("mqtt_publish").toInt()));
-    current_config.local_port = max(0, min(65535, webserver.arg("local_port").toInt()));
+    current_config.mqtt_publish = MAX(0, MIN(65535, webserver.arg("mqtt_publish").toInt()));
+    current_config.local_port = MAX(0, MIN(65535, webserver.arg("local_port").toInt()));
     
     current_config.verbose = 0;
     current_config.verbose |= (webserver.arg("verbose_c0") != "") ? 1 : 0;
@@ -105,7 +103,7 @@ void handle_set_parm()
         sprintf(tmp, "remote_server_%d", num);
         strncpy(current_config.remote_server[num], webserver.arg(tmp).c_str(), sizeof(current_config.remote_server[num]));
         sprintf(tmp, "remote_port_%d", num);
-        current_config.remote_port[num] = max(0, min(65535, webserver.arg(tmp).toInt()));
+        current_config.remote_port[num] = MAX(0, MIN(65535, webserver.arg(tmp).toInt()));
     }
 
     cfg_save();
