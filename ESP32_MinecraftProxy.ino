@@ -59,7 +59,7 @@ void loop()
     ota_loop();
     mqtt_loop();
     
-  	if (WiFi.status() == WL_CONNECTED)
+    if (WiFi.status() == WL_CONNECTED)
     {
         if(!connected)
         {
